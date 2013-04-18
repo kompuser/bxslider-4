@@ -668,6 +668,12 @@
 		 *  - DOM event object
 		 */
 		var clickNextBind = function(e){
+			
+			//pause any vimeo object - w/api=1 within iframe on next trigger ?
+			$("iframe").each(function() {
+                		this.contentWindow.postMessage('{ "method": "pause" }', "http://player.vimeo.com");
+            		});
+
 			// if auto show is running, stop it
 			if (slider.settings.auto) el.stopAuto();
 			el.goToNextSlide();
@@ -681,6 +687,12 @@
 		 *  - DOM event object
 		 */
 		var clickPrevBind = function(e){
+
+			//pause any vimeo object - w/api=1 within iframe on prev trigger ?
+			$("iframe").each(function() {
+                		this.contentWindow.postMessage('{ "method": "pause" }', "http://player.vimeo.com");
+            		});
+			
 			// if auto show is running, stop it
 			if (slider.settings.auto) el.stopAuto();
 			el.goToPrevSlide();
